@@ -1,0 +1,23 @@
+commit 21c3f606b55b7981a022630e2d3b7a2c5b6653cd
+Author: zinchenko-ihor <zinchenkoihor757@gmail.com>
+Date:   Thu Jun 10 14:15:09 2021 +0300
+
+    commit status.txt
+
+commit e1009c86db9ed4853e4027e69eff0542381c0094
+Author: zinchenko-ihor <zinchenkoihor757@gmail.com>
+Date:   Thu Jun 10 13:50:30 2021 +0300
+
+    last update .gitignore
+
+commit 87d9ef70ef4168e4e25377947c6d8f2c8a51add0
+Author: zinchenko-ihor <zinchenkoihor757@gmail.com>
+Date:   Thu Jun 10 13:36:40 2021 +0300
+
+    commit all
+
+commit 58b9edbe070f04fa88148db54de95a8eb64c393a
+Author: zinchenko-ihor <zinchenkoihor757@gmail.com>
+Date:   Thu Jun 10 13:22:00 2021 +0300
+
+    add .gitignore
