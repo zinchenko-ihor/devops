@@ -65,7 +65,10 @@ jobs:
           -- source-bandle S3Bucket="${{ env.EB_PACKAGE_S3_BACKET_NAME }}",S3Key="image.tar.gz" \
           -- versison-lable "Ver-${{ github.sha }}"
       - name: Deploy ELasticBeanstalk APP
-        run: aws elasticbeanstalk update-environment --environment-name ${{ env.EB_ENVIRONMENT_NAME }} --version-lable "Ver-${{ github.sha }}"
+        run: 
+            aws elasticbeanstalk update-environment \
+            --environment-name ${{ env.EB_ENVIRONMENT_NAME }} \
+            --version-lable "Ver-${{ github.sha }}"
           
         
            
