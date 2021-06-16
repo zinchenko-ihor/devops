@@ -14,11 +14,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-    
-    - name: exec to container
-      run: docker exec -it ${{ env.DOCK }} bash
+   
+   #- name: exec to container
+   #   run: docker exec -it ${{ env.DOCK }} bash
       
-    - name: message
-      run: echo "DEVOPS= ${{ env.UNAME }} " > /var/www/html/index.html
+   #- name: message
+   #  run: echo "DEVOPS= ${{ env.UNAME }} " > /var/www/html/index.html
       
       
