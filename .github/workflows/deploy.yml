@@ -5,6 +5,8 @@ env:
  EB_ENVIRONMENT_NAME       : "Zinchenkoihor-env"
  DEPLOY_PACKAGE_NAME       : "docker {{ github.sha }}"
  AWS_REGION_NAME           : "eu-central-1"
+ LOGIN                     : ${{ secrets.DOCKER_LOGIN }}
+ NAME                      : ${{ secrets.DOCKER_NAME }}
 on:
  
   push:
@@ -18,10 +20,15 @@ jobs:
     steps:
       - name: Git clone our repository
         uses: actions/checkout@v2
-     
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag name 
-        
+      
+      - name: Login to docker.io
+        run:  echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
+      - uses: actions/checkout@master
+      - name: Build image
+        run: docker build -t $LOGIN/$NAME:${GITHUB_REF:11} -f Dockerfile .
+      - name: Push image to docker.io
+        run: docker push $LOGIN/$NAME:${GITHUB_REF:11}
+      
       - name: Configure AWS Credential
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -30,7 +37,9 @@ jobs:
           aws-region            : ${{ env.AWS_REGION_NAME }}
           
       - name: Copy name to S3 Bucket
-        run: aws s3 cp name s3://${{ env.EB_PACKAGE_S3_BACKET_NAME }}
+        run: aws s3 cp $LOGIN/$NAME:${GITHUB_REF:11} s3://${{ env.EB_PACKAGE_S3_BACKET_NAME }}
       
       - name: Message
         run : echo "CI part is complite"
+        
+           
