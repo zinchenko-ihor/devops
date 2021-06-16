@@ -12,7 +12,7 @@ Task3:
     
    Сould not fulfill:
     3. Print environment variable with the value on a web page (if environment variable changed after container restart - the web page must be updated with a new value).
-    4. Create an automatic deployment on ElasticBeanstalk for each push. Have errors with environment variable.
+    4. Create an automatic deployment on ElasticBeanstalk for each push. (Have errors with followings arguments).
     5. Second container should be run right after a successful run of a database container. (I don't know how to implement this). Use env files to configure each service.
 
 
