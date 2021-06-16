@@ -43,4 +43,29 @@ jobs:
       - name: Message
         run : echo "CI part is complite good"
         
+  my_cd_part:
+    runs-on: ubuntu-latest
+    needs: [my_ci_part]
+    
+    steps:
+      - name: Git clone our repository
+        uses: actions/checkout@v2
+      
+      - name: Configure AWS Credential
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id     : ${{ secrets.MY_AWS_ACCESS_KEY }}
+          aws-secret-access-key : ${{ secrets.MY_AWS_SECRET_KEY }}
+          aws-region            : ${{ env.AWS_REGION_NAME }} 
+      
+      - name: Create new ELasticBeanstalk APP
+        run: |
+          aws elasticbeanstalk create-application-verion \
+          -- application name ${{ env.EB_APPLICATION_NAME }}
+          -- source-bandle S3Bucket="${{ env.EB_PACKAGE_S3_BACKET_NAME }}",S3Key="image.tar.gz" \
+          -- verison-lable "Ver-${{ github.sh }}"
+      - name: Deploy ELasticBeanstalk APP
+        run: aws elasticbeanstalk update-environment --environment-name ${{ env.EB_ENVIRONMENT_NAME }} --version-lable "Ver-${{ github.sh }}"
+          
+        
            
