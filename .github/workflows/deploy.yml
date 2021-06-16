@@ -61,7 +61,7 @@ jobs:
       - name: Create new ELasticBeanstalk APP
         run: |
           aws elasticbeanstalk create-application-version \
-          -- application-name "${{ env.EB_APPLICATION_NAME }}" \
+          -- application-name {{ env.EB_APPLICATION_NAME }} \
           -- versison-lable "Ver-${{ github.sha }}" \
           -- source-bandle S3Bucket="${{ env.EB_PACKAGE_S3_BACKET_NAME }}",S3Key="image.tar.gz" 
          
