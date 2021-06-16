@@ -1,5 +1,6 @@
 name: Docker Image CI
-
+env:
+ UNAME : "Zinchenko"
 on:
   push:
     branches: [ master ]
@@ -12,3 +13,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    
+    - name: message
+      run: echo "DEVOPS= ${{ env.UNAME }} " > /var/www/html/index.html
+      
+      
