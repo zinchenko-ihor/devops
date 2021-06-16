@@ -33,13 +33,13 @@ jobs:
       - uses: actions/checkout@master
       - name: Build image
         run: docker build -t $LOGIN/$NAME:${GITHUB_REF:11} -f Dockerfile .
-      #- name: Push image to docker.io
-       # run: docker push $LOGIN/$NAME:${GITHUB_REF:11}
       - name: Save image docker 
         run: docker save image | gzip > image.tar.gz      
       - name: Copy image to S3 Bucket
         run: aws s3 cp image.tar.gz s3://${{ env.EB_PACKAGE_S3_BACKET_NAME }}
-      
+      - name: Push image to docker.io
+        run: docker push $LOGIN/$NAME:${GITHUB_REF:11}
+
       - name: Message
         run : echo "CI part is complite good"
         
