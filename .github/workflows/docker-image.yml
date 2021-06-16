@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Docker-Image-CI
 env:
   UNAME : "Zinchenko"
   DOCK : "${{ github.sha }}"
