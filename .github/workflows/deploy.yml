@@ -40,6 +40,6 @@ jobs:
         run: aws s3 cp $LOGIN/$NAME:${GITHUB_REF:11} s3://${{ env.EB_PACKAGE_S3_BACKET_NAME }}
       
       - name: Message
-        run : echo "CI part is complite"
+        run : echo "CI part is complite good"
         
            
