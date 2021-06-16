@@ -65,11 +65,11 @@ jobs:
           -- versison-lable "Ver-${{ github.sha }}" \
           -- source-bandle S3Bucket="${{ env.EB_PACKAGE_S3_BACKET_NAME }}",S3Key="image.tar.gz" 
          
-      - name: Deploy ELasticBeanstalk APP
+      - name: Deploy ELasticBeanstalk APP to AWS
         run: 
             aws elasticbeanstalk update-environment \
-            --environment-name ${{ env.EB_ENVIRONMENT_NAME }} \
-            --version-lable "Ver-${{ github.sha }}"
+            -- environment-name ${{ env.EB_ENVIRONMENT_NAME }} \
+            -- version-lable "Ver-${{ github.sha }}"
           
         
            
