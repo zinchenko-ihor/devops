@@ -3,7 +3,7 @@ env:
  EB_PACKAGE_S3_BACKET_NAME : "zinchenko-ihor"
  EB_APPLICATION_NAME       : "zinchenko-ihor"
  EB_ENVIRONMENT_NAME       : "Zinchenkoihor-env"
- DEPLOY_PACKAGE_NAME       : "docker {{ github.sha }}"
+ #DEPLOY_PACKAGE_NAME       : "docker {{ github.sha }}"
  AWS_REGION_NAME           : "eu-central-1"
 on:
  
@@ -21,3 +21,16 @@ jobs:
      
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag my_file:$(date +%s)
+        
+      - name: Configure AWS Credential
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id     : ${{ secrets.MY_AWS_ACCESS_KEY }}
+          aws-secret-access-key : ${{ secrets.MY_AWS_SECRET_KEY }}
+          aws-region            : ${{ env.AWS_REGION_NAME }}
+          
+      - name: Copy image to S3 Bucket
+        run: aws s3 cp my_file:$(date +%s) s3://${{ env.EB_PACKAGE_S3_BACKET_NAME }}
+      
+      - name: Message
+        run : echo "CI part is complite"
