@@ -1,4 +1,8 @@
-main:
+version: "3.3"
+
+services:
+
+    main:
       build: ./
       image: docker.io/library/docker_main
       ports:
