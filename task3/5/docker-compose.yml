@@ -16,7 +16,7 @@ main:
         - "adminer"
 
     db:
-      image: mariadb:"${VERSION}"
+      image: mariadb:${VERSION}
       restart: always
       environment:
          MYSQL_ROOT_PASSWORD: "${DB_PASS}"
