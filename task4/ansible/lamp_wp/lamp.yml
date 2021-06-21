@@ -87,7 +87,7 @@
         name: mysql
         image: mysql
         state: started
-        env: MYSQL_ROOT_PASSWORD="{{ MYSQL_PASS }}"
+        env: MYSQL_ROOT_PASSWORD="{{ MYSQL_ROOT_PASSWORD }}"
     
     - name: Launch Adminer container
       docker_container:
